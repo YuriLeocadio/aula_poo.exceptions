@@ -1,5 +1,6 @@
 package com.poo.aula_exceptions;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Exercicios {
@@ -79,7 +80,7 @@ public class Exercicios {
             try {
                 opcao = sc.nextInt();
                 entradaInvalida = false;
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, insira um número inteiro.\n");
                 sc.next(); // Limpar a entrada invalida
                 exibirMenu();
