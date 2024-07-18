@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Exercicios {
+
     public static void ex1() {
         Scanner sc = new Scanner(System.in);
         boolean continuar = true;
@@ -64,10 +65,47 @@ public class Exercicios {
         sc.close();
     }
 
+    public static void ex3() {
+        Scanner sc = new Scanner(System.in);
+        boolean continuar = true;
+
+        while (continuar) {
+            exibirMenuEx3();
+            int opcao = lerOpcao(sc);
+
+            switch (opcao) {
+                case 1:
+                    listarNomes();
+                    escolherNome(sc);
+                    break;
+                case 2:
+                    System.out.println("Pior time do Brasil\n");
+                    break;
+                case 3:
+                    continuar = false;
+                    System.out.println("Encerrando o programa.");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.\n");
+                    break;
+            }
+        }
+
+        sc.close();
+    }
+
     public static void exibirMenu() {
         System.out.println("Menu:");
         System.out.println("1 - Piada");
         System.out.println("2 - Melhor time do Brasil");
+        System.out.println("3 - Sair");
+        System.out.print("Escolha uma opção: ");
+    }
+
+    public static void exibirMenuEx3() {
+        System.out.println("Menu Exercício 3:");
+        System.out.println("1 - Listar nomes");
+        System.out.println("2 - Pior time do Brasil");
         System.out.println("3 - Sair");
         System.out.print("Escolha uma opção: ");
     }
@@ -82,12 +120,52 @@ public class Exercicios {
                 entradaInvalida = false;
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, insira um número inteiro.\n");
-                sc.next(); // Limpar a entrada invalida
+                sc.next(); // Limpar a entrada inválida
                 exibirMenu();
             }
         }
 
         return opcao;
+    }
+
+    public static void listarNomes() {
+        System.out.println("Lista de nomes:");
+        System.out.println("1 - Lucas");
+        System.out.println("2 - Enzo");
+        System.out.println("3 - Eloisa");
+    }
+
+    public static void escolherNome(Scanner sc) {
+        boolean entradaInvalida = true;
+        while (entradaInvalida) {
+            try {
+                System.out.print("Escolha o índice do nome desejado: ");
+                int indice = sc.nextInt();
+
+                switch (indice) {
+                    case 1:
+                        System.out.println("Você escolheu o nome Lucas.\n");
+                        entradaInvalida = false;
+                        break;
+                    case 2:
+                        System.out.println("Você escolheu o nome Enzo.\n");
+                        entradaInvalida = false;
+                        break;
+                    case 3:
+                        System.out.println("Você escolheu o nome Eloisa.\n");
+                        entradaInvalida = false;
+                        break;
+                    default:
+                        System.out.println("Índice inválido. Escolha um índice entre 1 e 3.\n");
+                        listarNomes();
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, insira um número inteiro.\n");
+                sc.next(); // Limpar a entrada inválida
+                listarNomes();
+            }
+        }
     }
 
     public static double dividir(double dividendo, double divisor) {
